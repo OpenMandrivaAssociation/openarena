@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: GL-devel
 BuildRequires: SDL-devel
 BuildRequires: openal-devel
-
+Requires: %{name}-data
 
 %description
 OpenArena is an open-source content package for Quake III Arena
@@ -38,6 +38,7 @@ install -D %{SOURCE2} ui/menudef.h
 %install
 rm -rf %{buildroot}
 %make copyfiles COPYDIR=%{buildroot}%{gamelibdir}
+ln -s ../../../share/games/%{name}/baseoa %{buildroot}%{gamelibdir}
 
 binary=`basename %{buildroot}%{gamelibdir}/ioquake3.*`
 
