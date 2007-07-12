@@ -13,6 +13,7 @@ Version: %{version}
 Release: %{release}
 Source0: http://openarena.ws/rel/%{oversion}/ioq3-src-oa.tar.bz2
 Source1: http://cheapy.deathmask.net/logo.gif
+Source2: http://openarena.ws/svn/missionpack/ui/menudef.h
 License: GPL/Creative Commons
 Group: Games/Arcade
 Url: http://openarena.ws/
@@ -29,6 +30,7 @@ game. You do not need Quake III Arena to play this game.
 
 %prep
 %setup -q -c
+install -D %{SOURCE2} ui/menudef.h
 
 %build
 %make
