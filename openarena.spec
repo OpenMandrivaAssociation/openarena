@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: GL-devel
 BuildRequires: SDL-devel
 BuildRequires: openal-devel
+BuildRequires: oggvorbis-devel
 Requires: %{name}-data
 
 %description
