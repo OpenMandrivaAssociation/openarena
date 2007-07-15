@@ -2,7 +2,7 @@
 %define Summary An open-source content package for Quake III Arena
 %define version 0.7.0
 %define q3src ioq3-svn982
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define oversion %(echo %{version} | sed -e 's/\\.//g')
 %define gamelibdir %{_libdir}/games/%{name}
@@ -68,6 +68,12 @@ EOF
 
 %clean
 rm -rf %{buildroot}
+
+%pretrans
+if [ -d %{gamelibdir}/baseoa ]; then
+   mv %{gamelibdir}/baseoa{,.rpmsave}
+   ln -s baseoa.rpmsave %{gamelibdir}/baseoa
+fi
 
 %files
 %defattr(-,root,root)
