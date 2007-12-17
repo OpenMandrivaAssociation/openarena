@@ -17,7 +17,6 @@ Source2: http://openarena.ws/svn/missionpack/ui/menudef.h
 License: GPL/Creative Commons
 Group: Games/Arcade
 Url: http://openarena.ws/
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: GL-devel
 BuildRequires: SDL-devel
 BuildRequires: openal-devel
