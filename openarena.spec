@@ -74,7 +74,12 @@ fi
 %files
 %defattr(-,root,root)
 %{_gamesbindir}/%{name}
-%{gamelibdir}/*
+%dir %{gamelibdir}
+%{gamelibdir}/io*.*
+%dir %{gamelibdir}/baseoa
+%{gamelibdir}/baseoa/*.so
+%dir %{gamelibdir}/missionpack
+%{gamelibdir}/missionpack/*.so
 %{_datadir}/icons/%{name}.gif
 %{_datadir}/applications/mandriva-%{name}.desktop
 
