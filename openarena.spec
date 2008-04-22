@@ -1,8 +1,9 @@
 %define name openarena
 %define Summary An open-source content package for Quake III Arena
-%define version 0.7.0
-%define q3src ioq3-svn982
-%define release %mkrel 3
+%define version 0.7.6
+%define q3src ioquake3svn1288
+%define q3tar %{q3src}plus4
+%define release %mkrel 1
 
 %define oversion %(echo %{version} | sed -e 's/\\.//g')
 %define gamelibdir %{_libdir}/games/%{name}
@@ -11,7 +12,7 @@ Summary: %{Summary}
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: http://openarena.ws/rel/%{oversion}/ioq3-src-oa.tar.bz2
+Source0: http://openarena.ws/svn/source/%{oversion}/%{q3tar}.tar.bz2
 Source1: http://cheapy.deathmask.net/logo.gif
 Source2: http://openarena.ws/svn/missionpack/ui/menudef.h
 License: GPL/Creative Commons
@@ -30,7 +31,7 @@ licensed under the GPL, effectively creating a free stand-alone
 game. You do not need Quake III Arena to play this game.
 
 %prep
-%setup -q -c
+%setup -q -n %{q3src}
 install -D %{SOURCE2} ui/menudef.h
 
 %build
