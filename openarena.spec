@@ -38,7 +38,6 @@ game. You do not need Quake III Arena to play this game.
 %install
 rm -rf %{buildroot}
 %make copyfiles COPYDIR=%{buildroot}%{gamelibdir}
-ln -s ../../../share/games/%{name}/baseoa %{buildroot}%{gamelibdir}
 
 binary=`basename %{buildroot}%{gamelibdir}/ioquake3.*`
 
@@ -68,9 +67,8 @@ EOF
 rm -rf %{buildroot}
 
 %pretrans
-if [ -d %{gamelibdir}/baseoa ]; then
-   mv %{gamelibdir}/baseoa{,.rpmsave}
-   ln -s baseoa.rpmsave %{gamelibdir}/baseoa
+if [ -L %{gamelibdir}/baseoa ]; then
+   rm -f %{gamelibdir}/baseoa
 fi
 
 %files
