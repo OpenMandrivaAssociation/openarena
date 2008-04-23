@@ -82,6 +82,7 @@ fi
 %{gamelibdir}/io*.*
 %dir %{gamelibdir}/baseoa
 %{gamelibdir}/baseoa/*.so
+%{gamelibdir}/baseoa/*.pk3
 %dir %{gamelibdir}/missionpack
 %{gamelibdir}/missionpack/*.so
 %{_datadir}/icons/%{name}.gif
