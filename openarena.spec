@@ -1,9 +1,10 @@
 %define name openarena
 %define Summary An open-source content package for Quake III Arena
 %define version 0.7.6
+%define data_version %{version}
 %define q3src ioquake3svn1288
 %define q3tar %{q3src}plus4
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define oversion %(echo %{version} | sed -e 's/\\.//g')
 %define gamelibdir %{_libdir}/games/%{name}
@@ -22,6 +23,7 @@ BuildRequires: GL-devel
 BuildRequires: SDL-devel
 BuildRequires: openal-devel
 BuildRequires: oggvorbis-devel
+Requires: %{name}-data = %{data_version}
 Requires: %{name}-data
 
 %description
@@ -38,6 +40,8 @@ game. You do not need Quake III Arena to play this game.
 %install
 rm -rf %{buildroot}
 %make copyfiles COPYDIR=%{buildroot}%{gamelibdir}
+# symlink files from noarch package in arch-specific game dir
+ln -sf %{_gamesdatadir}/%{name}/baseoa/* %{buildroot}%{gamelibdir}/baseoa
 
 binary=`basename %{buildroot}%{gamelibdir}/ioquake3.*`
 
