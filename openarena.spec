@@ -23,7 +23,7 @@ BuildRequires: GL-devel
 BuildRequires: SDL-devel
 BuildRequires: openal-devel
 BuildRequires: oggvorbis-devel
-Requires: %{name}-data = %{data_version}
+BuildRequires: %{name}-data = %{data_version}
 Requires: %{name}-data = %{data_version}
 
 %description
