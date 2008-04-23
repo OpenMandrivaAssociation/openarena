@@ -24,7 +24,7 @@ BuildRequires: SDL-devel
 BuildRequires: openal-devel
 BuildRequires: oggvorbis-devel
 Requires: %{name}-data = %{data_version}
-Requires: %{name}-data
+Requires: %{name}-data = %{data_version}
 
 %description
 OpenArena is an open-source content package for Quake III Arena
