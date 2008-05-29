@@ -1,12 +1,12 @@
 %define name openarena
 %define Summary An open-source content package for Quake III Arena
-%define version 0.7.6
-%define data_version %{version}
-%define q3src ioquake3svn1288
-%define q3tar %{q3src}plus4
+%define version 0.7.7
+%define data_version 0.7.6
+%define oversion %(echo %{version} | sed -e 's/\\.//g')
+%define q3src %{name}%{oversion}
+%define q3tar %{q3src}scr3
 %define release %mkrel 2
 
-%define oversion %(echo %{version} | sed -e 's/\\.//g')
 %define gamelibdir %{_libdir}/games/%{name}
 
 Summary: %{Summary}
