@@ -5,7 +5,7 @@
 %define oversion %(echo %{version} | sed -e 's/\\.//g')
 %define q3src %{name}%{oversion}
 %define q3tar %{q3src}scr3
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define gamelibdir %{_libdir}/games/%{name}
 
@@ -69,6 +69,12 @@ EOF
 
 %clean
 rm -rf %{buildroot}
+
+%post
+%update_menus
+
+%postun
+%clean_menus
 
 %pretrans
 if [ -L %{gamelibdir}/baseoa ]; then
