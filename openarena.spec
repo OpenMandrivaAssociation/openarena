@@ -1,10 +1,10 @@
 %define name openarena
 %define Summary An open-source content package for Quake III Arena
-%define version 0.7.7
+%define version 0.8.0
 %define data_version 0.7.7
 %define oversion %(echo %{version} | sed -e 's/\\.//g')
-%define q3src %{name}%{oversion}
-%define q3tar %{q3src}scr3
+%define q3src ioquake3svn1438
+%define q3tar ioquake3svn1438
 %define release %mkrel 4
 
 %define gamelibdir %{_libdir}/games/%{name}
@@ -84,14 +84,6 @@ fi
 %files
 %defattr(-,root,root)
 %{_gamesbindir}/%{name}
-%dir %{gamelibdir}
-%{gamelibdir}/io*.*
-%dir %{gamelibdir}/baseoa
-%{gamelibdir}/baseoa/*.so
-%{gamelibdir}/baseoa/*.pk3
-%dir %{gamelibdir}/missionpack
-%{gamelibdir}/missionpack/*.so
+%{gamelibdir}
 %{_datadir}/icons/%{name}.gif
 %{_datadir}/applications/mandriva-%{name}.desktop
-
-
