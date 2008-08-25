@@ -5,7 +5,7 @@
 %define oversion %(echo %{version} | sed -e 's/\\.//g')
 %define q3src ioquake3svn1438
 %define q3tar ioquake3svn1438
-%define release %mkrel 4
+%define release %mkrel 1
 
 %define gamelibdir %{_libdir}/games/%{name}
 
