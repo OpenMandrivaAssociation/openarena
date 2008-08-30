@@ -1,11 +1,11 @@
 %define name openarena
 %define Summary An open-source content package for Quake III Arena
 %define version 0.8.0
-%define data_version 0.7.7
+%define data_version 0.8.0
 %define oversion %(echo %{version} | sed -e 's/\\.//g')
 %define q3src ioquake3svn1438
 %define q3tar ioquake3svn1438
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define gamelibdir %{_libdir}/games/%{name}
 
@@ -43,7 +43,7 @@ rm -rf %{buildroot}
 # symlink files from noarch package in arch-specific game dir
 ln -sf %{_gamesdatadir}/%{name}/baseoa/* %{buildroot}%{gamelibdir}/baseoa
 
-binary=`basename %{buildroot}%{gamelibdir}/ioquake3.*`
+binary=`basename %{buildroot}%{gamelibdir}/openarena.*`
 
 install -d %{buildroot}%{_gamesbindir}
 cat > %{buildroot}%{_gamesbindir}/%{name} <<EOF
@@ -84,6 +84,11 @@ fi
 %files
 %defattr(-,root,root)
 %{_gamesbindir}/%{name}
-%{gamelibdir}
+%dir %{gamelibdir}
+%{gamelibdir}/missionpack
+%{gamelibdir}/oa_ded.*
+%{gamelibdir}/openarena.*
+%dir %{gamelibdir}/baseoa
+%{gamelibdir}/baseoa/*.pk3
 %{_datadir}/icons/%{name}.gif
 %{_datadir}/applications/mandriva-%{name}.desktop
