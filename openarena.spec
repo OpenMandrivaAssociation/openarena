@@ -5,7 +5,7 @@
 %define oversion %(echo %{version} | sed -e 's/\\.//g')
 %define q3src ioquake3svn1438
 %define q3tar ioquake3svn1438
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define gamelibdir %{_libdir}/games/%{name}
 
@@ -15,6 +15,7 @@ Version: %{version}
 Release: %{release}
 Source0: http://openarena.ws/svn/source/%{oversion}/%{q3tar}.tar.bz2
 Source1: http://cheapy.deathmask.net/logo.gif
+Patch1: http://nman64.fedorapeople.org/openarena/ioquake3-serverfix.patch
 License: GPL/Creative Commons
 Group: Games/Arcade
 Url: http://openarena.ws/
@@ -33,6 +34,7 @@ game. You do not need Quake III Arena to play this game.
 
 %prep
 %setup -q -n %{q3src}
+%patch1 -p1
 
 %build
 %make
