@@ -1,31 +1,24 @@
-%define name openarena
-%define Summary An open-source content package for Quake III Arena
-%define version 0.8.0
-%define data_version 0.8.0
-%define oversion %(echo %{version} | sed -e 's/\\.//g')
-%define q3src ioquake3svn1438
-%define q3tar ioquake3svn1438
-%define release %mkrel 3
+%define data_version	0.8.1
+%define oversion	%(echo %{version} | sed -e 's/\\.//g')
+%define gamelibdir	%{_libdir}/games/%{name}
 
-%define gamelibdir %{_libdir}/games/%{name}
-
-Summary: %{Summary}
-Name: %{name}
-Version: %{version}
-Release: %{release}
-Source0: http://openarena.ws/svn/source/%{oversion}/%{q3tar}.tar.bz2
-Source1: http://cheapy.deathmask.net/logo.gif
-Patch1: http://nman64.fedorapeople.org/openarena/ioquake3-serverfix.patch
-License: GPL/Creative Commons
-Group: Games/Arcade
-Url: http://openarena.ws/
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: GL-devel
-BuildRequires: SDL-devel
-BuildRequires: openal-devel
-BuildRequires: oggvorbis-devel
-BuildRequires: %{name}-data = %{data_version}
-Requires: %{name}-data = %{data_version}
+Summary:	An open-source content package for Quake III Arena
+Name:		openarena
+Version:	0.8.1
+Release:	%{mkrel 1}
+Source0:	http://openarena.ws/svn/source/%{oversion}/%{name}-engine-%{version}-1.tar.bz2
+Source1:	http://cheapy.deathmask.net/logo.gif
+License:	GPLv2+
+Group:		Games/Arcade
+URL:		http://openarena.ws/
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	GL-devel
+BuildRequires:	SDL-devel
+BuildRequires:	openal-devel
+BuildRequires:	oggvorbis-devel
+BuildRequires:	imagemagick
+BuildRequires:	%{name}-data = %{data_version}
+Requires:	%{name}-data = %{data_version}
 
 %description
 OpenArena is an open-source content package for Quake III Arena
@@ -33,8 +26,7 @@ licensed under the GPL, effectively creating a free stand-alone
 game. You do not need Quake III Arena to play this game.
 
 %prep
-%setup -q -n %{q3src}
-%patch1 -p1
+%setup -q -n %{name}-engine-%{version}
 
 %build
 %make
@@ -53,30 +45,41 @@ cat > %{buildroot}%{_gamesbindir}/%{name} <<EOF
 cd %{gamelibdir}
 exec ./$binary \$*
 EOF
-chmod 755 $RPM_BUILD_ROOT%{_gamesbindir}/%{name}
+chmod 755 %{buildroot}%{_gamesbindir}/%{name}
 
-install -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/icons/%{name}.gif
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
+convert -scale 128x128 %{SOURCE1} %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
+convert -scale 64x64 %{SOURCE1} %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{name}.png
+convert -scale 48x48 %{SOURCE1} %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+convert -scale 32x32 %{SOURCE1} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+convert -scale 16x16 %{SOURCE1} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 
 install -d %{buildroot}%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=OpenArena
-Comment=%{Summary}
+Comment=Quake 3: Arena-like FPS game
 Exec=soundwrapper %{_gamesbindir}/%{name}
-Icon=%{_datadir}/icons/%{name}.gif
+Icon=%{name}
 Terminal=false
 Type=Application
-Categories=Game;ArcadeGame;X-MandrivaLinux-MoreApplications-Games-Arcade;
+Categories=Game;ArcadeGame;
 EOF
 
 %clean
 rm -rf %{buildroot}
 
+%if %mdkversion < 200900
 %post
 %update_menus
+%update_icon_cache hicolor
+%endif
 
+%if %mdkversion < 200900
 %postun
 %clean_menus
+%clean_icon_cache hicolor
+%endif
 
 %pretrans
 if [ -L %{gamelibdir}/baseoa ]; then
@@ -92,5 +95,5 @@ fi
 %{gamelibdir}/openarena.*
 %dir %{gamelibdir}/baseoa
 %{gamelibdir}/baseoa/*.pk3
-%{_datadir}/icons/%{name}.gif
+%{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/applications/mandriva-%{name}.desktop
