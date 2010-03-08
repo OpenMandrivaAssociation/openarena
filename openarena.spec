@@ -5,7 +5,7 @@
 Summary:	An open-source content package for Quake III Arena
 Name:		openarena
 Version:	0.8.1
-Release:	%{mkrel 2}
+Release:	%{mkrel 3}
 Source0:	http://openarena.ws/svn/source/%{oversion}/%{name}-engine-%{version}-1.tar.bz2
 Source1:	http://cheapy.deathmask.net/logo.gif
 License:	GPLv2+
@@ -17,7 +17,7 @@ BuildRequires:	SDL-devel
 BuildRequires:	openal-devel
 BuildRequires:	oggvorbis-devel
 BuildRequires:	imagemagick
-BuildRequires:	%{name}-data = %{data_version}
+BuildRequires:	%{name}-data >= %{data_version}
 Requires:	%{name}-data = %{data_version}
 
 %description
