@@ -5,7 +5,7 @@
 Summary:	An open-source content package for Quake III Arena
 Name:		openarena
 Version:	0.8.1
-Release:	%{mkrel 4}
+Release:	%mkrel 5
 Source0:	http://openarena.ws/svn/source/%{oversion}/%{name}-engine-%{version}-1.tar.bz2
 Source1:	http://cheapy.deathmask.net/logo.gif
 License:	GPLv2+
@@ -17,6 +17,7 @@ BuildRequires:	SDL-devel
 BuildRequires:	openal-devel
 BuildRequires:	oggvorbis-devel
 BuildRequires:	imagemagick
+BuildRequires:	curl-devel
 BuildRequires:	%{name}-data >= %{data_version}
 Requires:	%{name}-data => %{data_version}
 
@@ -29,7 +30,10 @@ game. You do not need Quake III Arena to play this game.
 %setup -q -n %{name}-engine-%{version}
 
 %build
-%make
+%setup_compile_flags
+%serverbuild
+
+%make USE_CURL=1 USE_CURL_DLOPEN=0 USE_OPENAL=1 USE_OPENAL_DLOPEN=0 USE_CODEC_VORBIS=1
 
 %install
 rm -rf %{buildroot}
