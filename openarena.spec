@@ -4,16 +4,14 @@
 
 Summary:	An open-source content package for Quake III Arena
 Name:		openarena
-Version:	0.8.1
-Release:	%mkrel 8
-Source0:	http://openarena.ws/svn/source/%{oversion}/%{name}-engine-%{version}-1.tar.bz2
+Version:	0.8.8
+Release:	%mkrel 1
+Source0:	http://openarena.ws/svn/source/%{oversion}/%{name}-engine-source-%{version}.tar.bz2
 Source1:	http://cheapy.deathmask.net/logo.gif
-Patch0:		openarena-0.8.1-stack.patch
-Patch1:		openarena-0.8.1-fix_bots.patch
+Patch0:		openarena-0.8.8-stack.patch
 License:	GPLv2+
 Group:		Games/Arcade
 URL:		http://openarena.ws/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	GL-devel
 BuildRequires:	SDL-devel
 BuildRequires:	openal-devel
@@ -29,9 +27,8 @@ licensed under the GPL, effectively creating a free stand-alone
 game. You do not need Quake III Arena to play this game.
 
 %prep
-%setup -q -n %{name}-engine-%{version}
+%setup -q -n %{name}-engine-source-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %setup_compile_flags
