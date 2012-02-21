@@ -1,3 +1,7 @@
+# debug info is not generated anyway, we just disable empty package
+%define _enable_debug_packages %{nil}
+%define debug_package %{nil}
+
 %define data_version	0.8.1
 %define oversion	%(echo %{version} | sed -e 's/\\.//g')
 %define gamelibdir	%{_libdir}/games/%{name}
@@ -32,7 +36,8 @@ game. You do not need Quake III Arena to play this game.
 
 %build
 %setup_compile_flags
-%serverbuild
+# ATM serverbuild breaks build in Cooker
+#serverbuild
 
 %make USE_CURL=1 USE_CURL_DLOPEN=0 USE_OPENAL=1 USE_OPENAL_DLOPEN=0 USE_CODEC_VORBIS=1
 
@@ -73,18 +78,6 @@ EOF
 
 %clean
 rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post
-%update_menus
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun
-%clean_menus
-%clean_icon_cache hicolor
-%endif
 
 %pretrans
 if [ -L %{gamelibdir}/baseoa ]; then
