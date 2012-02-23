@@ -5,7 +5,7 @@
 Summary:	An open-source content package for Quake III Arena
 Name:		openarena
 Version:	0.8.8
-Release:	%mkrel 1
+Release:	%mkrel 2
 Source0:	http://openarena.ws/svn/source/%{oversion}/%{name}-engine-source-%{version}.tar.bz2
 Source1:	http://cheapy.deathmask.net/logo.gif
 Patch0:		openarena-0.8.8-stack.patch
@@ -18,8 +18,7 @@ BuildRequires:	openal-devel
 BuildRequires:	oggvorbis-devel
 BuildRequires:	imagemagick
 BuildRequires:	curl-devel
-BuildRequires:	%{name}-data >= %{data_version}
-Requires:	%{name}-data => %{data_version}
+Requires:	%{name}-data >= %{data_version}
 
 %description
 OpenArena is an open-source content package for Quake III Arena
@@ -40,22 +39,12 @@ game. You do not need Quake III Arena to play this game.
 	USE_OPENAL=1 \
 	USE_OPENAL_DLOPEN=0 \
 	USE_CODEC_VORBIS=1 \
-	V=1
+	V=1 \
+	DEFAULT_BASEDIR=%{_gamesdatadir}/%{name} \
+	FULLBINEXT=''
 
 %install
-%make copyfiles COPYDIR=%{buildroot}%{gamelibdir} NO_STRIP=1
-# symlink files from noarch package in arch-specific game dir
-ln -sf %{_gamesdatadir}/%{name}/baseoa/* %{buildroot}%{gamelibdir}/baseoa
-
-binary=`basename %{buildroot}%{gamelibdir}/openarena.*`
-
-install -d %{buildroot}%{_gamesbindir}
-cat > %{buildroot}%{_gamesbindir}/%{name} <<EOF
-#!/bin/sh
-cd %{gamelibdir}
-exec ./$binary \$*
-EOF
-chmod 755 %{buildroot}%{_gamesbindir}/%{name}
+%make copyfiles COPYDIR=%{buildroot}%{_gamesbindir} NO_STRIP=1 FULLBINEXT=''
 
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48,64x64,128x128}/apps
 convert -scale 128x128 %{SOURCE1} %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
@@ -76,18 +65,8 @@ Type=Application
 Categories=Game;ArcadeGame;
 EOF
 
-%pretrans
-if [ -L %{gamelibdir}/baseoa ]; then
-   rm -f %{gamelibdir}/baseoa
-fi
-
 %files
 %{_gamesbindir}/%{name}
-%dir %{gamelibdir}
-%{gamelibdir}/missionpack
-%{gamelibdir}/oa_ded.*
-%{gamelibdir}/openarena.*
-%dir %{gamelibdir}/baseoa
-%{gamelibdir}/baseoa/*.pk3
+%{_gamesbindir}/oa_ded
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/applications/mandriva-%{name}.desktop
