@@ -43,7 +43,8 @@ game. You do not need Quake III Arena to play this game.
 	USE_CURL_DLOPEN=0 \
 	USE_OPENAL=1 \
 	USE_OPENAL_DLOPEN=0 \
-	USE_CODEC_VORBIS=1
+	USE_CODEC_VORBIS=1 \
+	V=1
 
 %install
 %make copyfiles COPYDIR=%{buildroot}%{gamelibdir}
