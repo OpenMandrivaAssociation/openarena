@@ -1,7 +1,3 @@
-# debug info is not generated anyway, we just disable empty package
-%define _enable_debug_packages %{nil}
-%define debug_package %{nil}
-
 %define data_version	0.8.1
 %define oversion	%(echo %{version} | sed -e 's/\\.//g')
 %define gamelibdir	%{_libdir}/games/%{name}
@@ -47,7 +43,7 @@ game. You do not need Quake III Arena to play this game.
 	V=1
 
 %install
-%make copyfiles COPYDIR=%{buildroot}%{gamelibdir}
+%make copyfiles COPYDIR=%{buildroot}%{gamelibdir} NO_STRIP=1
 # symlink files from noarch package in arch-specific game dir
 ln -sf %{_gamesdatadir}/%{name}/baseoa/* %{buildroot}%{gamelibdir}/baseoa
 
