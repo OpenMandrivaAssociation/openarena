@@ -1,6 +1,5 @@
 %define data_version	0.8.1
 %define oversion	%(echo %{version} | sed -e 's/\\.//g')
-%define gamelibdir	%{_libdir}/games/%{name}
 
 Summary:	An open-source content package for Quake III Arena
 Name:		openarena
