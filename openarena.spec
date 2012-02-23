@@ -39,10 +39,13 @@ game. You do not need Quake III Arena to play this game.
 # ATM serverbuild breaks build in Cooker
 #serverbuild
 
-%make USE_CURL=1 USE_CURL_DLOPEN=0 USE_OPENAL=1 USE_OPENAL_DLOPEN=0 USE_CODEC_VORBIS=1
+%make	USE_CURL=1 \
+	USE_CURL_DLOPEN=0 \
+	USE_OPENAL=1 \
+	USE_OPENAL_DLOPEN=0 \
+	USE_CODEC_VORBIS=1
 
 %install
-rm -rf %{buildroot}
 %make copyfiles COPYDIR=%{buildroot}%{gamelibdir}
 # symlink files from noarch package in arch-specific game dir
 ln -sf %{_gamesdatadir}/%{name}/baseoa/* %{buildroot}%{gamelibdir}/baseoa
@@ -76,16 +79,12 @@ Type=Application
 Categories=Game;ArcadeGame;
 EOF
 
-%clean
-rm -rf %{buildroot}
-
 %pretrans
 if [ -L %{gamelibdir}/baseoa ]; then
    rm -f %{gamelibdir}/baseoa
 fi
 
 %files
-%defattr(-,root,root)
 %{_gamesbindir}/%{name}
 %dir %{gamelibdir}
 %{gamelibdir}/missionpack
