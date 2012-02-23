@@ -63,6 +63,8 @@ Categories=Game;ArcadeGame;
 EOF
 
 %files
+%doc ChangeLog README NOTTODO TODO BUGS
+%doc id-readme.txt voip-readme.txt md4-readme.txt
 %{_gamesbindir}/%{name}
 %{_gamesbindir}/oa_ded
 %{_iconsdir}/hicolor/*/apps/%{name}.png
