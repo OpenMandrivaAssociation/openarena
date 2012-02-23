@@ -31,8 +31,6 @@ game. You do not need Quake III Arena to play this game.
 
 %build
 %setup_compile_flags
-# ATM serverbuild breaks build in Cooker
-#serverbuild
 
 %make	USE_CURL=1 \
 	USE_CURL_DLOPEN=0 \
