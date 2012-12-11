@@ -11,12 +11,13 @@ Patch0:		openarena-0.8.8-stack.patch
 License:	GPLv2+
 Group:		Games/Arcade
 URL:		http://openarena.ws/
-BuildRequires:	GL-devel
-BuildRequires:	SDL-devel
-BuildRequires:	openal-devel
-BuildRequires:	oggvorbis-devel
+BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(glu)
+BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(openal)
+BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	imagemagick
-BuildRequires:	curl-devel
+BuildRequires:	pkgconfig(libcurl)
 Requires:	%{name}-data >= %{data_version}
 
 %description
