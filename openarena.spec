@@ -56,7 +56,7 @@ cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=OpenArena
 Comment=Quake 3: Arena-like FPS game
-Exec=soundwrapper %{_gamesbindir}/%{name}
+Exec=%{_gamesbindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
