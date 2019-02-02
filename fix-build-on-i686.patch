@@ -1,0 +1,11 @@
+--- openarena-engine-source-0.8.8/code/qcommon/vm_x86.c~	2011-12-24 12:29:32.000000000 +0000
++++ openarena-engine-source-0.8.8/code/qcommon/vm_x86.c	2016-03-12 11:46:19.775197924 +0000
+@@ -91,7 +91,7 @@
+ static void (*const asmCallPtr)(void) = AsmCall;
+ 
+ 
+-static	int		callMask = 0;
++	int		callMask = 0;
+ 
+ static	int	instruction, pass;
+ static	int	lastConst = 0;
