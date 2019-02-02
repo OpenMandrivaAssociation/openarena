@@ -8,6 +8,8 @@ Release:	4
 Source0:	http://openarena.ws/svn/source/%{oversion}/%{name}-engine-source-%{version}.tar.bz2
 Source1:	http://cheapy.deathmask.net/logo.gif
 Patch0:		openarena-0.8.8-stack.patch
+Patch1:		make-it-compatibile-with-aarch64.patch
+Patch2:		fix-build-on-i68.patch
 License:	GPLv2+
 Group:		Games/Arcade
 URL:		http://openarena.ws/
@@ -27,7 +29,7 @@ game. You do not need Quake III Arena to play this game.
 
 %prep
 %setup -q -n %{name}-engine-source-%{version}
-%patch0 -p1
+%autopatch -p1
 
 %build
 %setup_compile_flags
