@@ -9,7 +9,7 @@ Source0:	http://openarena.ws/svn/source/%{oversion}/%{name}-engine-source-%{vers
 Source1:	http://cheapy.deathmask.net/logo.gif
 Patch0:		openarena-0.8.8-stack.patch
 Patch1:		make-it-compatibile-with-aarch64.patch
-Patch2:		fix-build-on-i68.patch
+Patch2:		fix-build-on-i686.patch
 License:	GPLv2+
 Group:		Games/Arcade
 URL:		http://openarena.ws/
