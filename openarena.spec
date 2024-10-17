@@ -12,7 +12,7 @@ Patch1:		make-it-compatibile-with-aarch64.patch
 Patch2:		fix-build-on-i686.patch
 License:	GPLv2+
 Group:		Games/Arcade
-URL:		http://openarena.ws/
+URL:		https://openarena.ws/
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(sdl)
