@@ -13,6 +13,7 @@ Patch2:		fix-build-on-i686.patch
 License:	GPLv2+
 Group:		Games/Arcade
 URL:		https://openarena.ws/
+BuildRequires:	make
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(sdl)
